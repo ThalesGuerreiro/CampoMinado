@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "terminal.h"
 #include "jogo.h"
 
@@ -16,7 +17,7 @@ void imprime_campo(const Tabuleiro *campo){
                 printf("  ");
             }
             else if(!atual.tem_bomba){
-                printf("%i ", campo->celulas[indice(campo, i, j)].bombas_perto);
+                printf("%i ", atual.bombas_perto);
             }
             else if(atual.tem_bomba){
                 printf("X ");
