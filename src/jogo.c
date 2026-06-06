@@ -9,6 +9,8 @@ Tabuleiro criar_tabuleiro(int linhas, int colunas){
     campo.colunas = colunas;
     campo.total_bombas = linhas*colunas*0.2;
     campo.celulas = NULL;
+    campo.n_reveladas = 0;
+    campo.acabou = false;
 
     campo.celulas = malloc(linhas*colunas * sizeof(Celula));
     if (campo.celulas == NULL) {
@@ -61,6 +63,40 @@ void calcula_bombas_vizinhas(Tabuleiro *campo){
                 }
             }
             campo->celulas[indice(campo, i, j)].bombas_perto = bombas;
+        }
+    }
+}
+
+void revelar_celula(Tabuleiro *campo, int linha, int coluna){
+    if(linha < 0 || coluna < 0 || linha >= campo->linhas || coluna >= campo->colunas){
+        return;
+    }
+
+    int ind = indice(campo, linha, coluna);
+
+    if((campo->celulas[ind].tem_bandeira == false) && (campo->celulas[ind].foi_revelada == false)){
+
+        campo->celulas[ind].foi_revelada = true;
+        campo->n_reveladas++;
+
+        if(campo->celulas[ind].tem_bomba == true){
+            campo->acabou = true;
+            return;
+        }
+
+        if(campo->celulas[ind].bombas_perto == 0){
+            for(int di = -1; di <= 1; di++){
+                for(int dj = -1; dj <= 1; dj++){
+                    if(di == 0 && dj == 0){
+                        continue;
+                    }
+                    int linha_vizinha = linha + di,
+                        coluna_vizinha = coluna + dj;
+                    if((linha_vizinha > -1) && (coluna_vizinha > -1) && (linha_vizinha < campo->linhas) && (coluna_vizinha < campo->colunas)){
+                        revelar_celula(campo, linha_vizinha, coluna_vizinha);
+                    }
+                }
+            }
         }
     }
 }
