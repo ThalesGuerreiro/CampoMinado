@@ -100,3 +100,8 @@ void revelar_celula(Tabuleiro *campo, int linha, int coluna){
         }
     }
 }
+
+void marca_bandeira(Tabuleiro *campo, int linha, int coluna){
+    campo->celulas[indice(campo, linha, coluna)].tem_bandeira =
+        !campo->celulas[indice(campo, linha, coluna)].tem_bandeira;
+}

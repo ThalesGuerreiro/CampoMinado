@@ -27,4 +27,6 @@ void calcula_bombas_vizinhas(Tabuleiro *campo);
 
 void revelar_celula(Tabuleiro *campo, int linha, int coluna);
 
+void marca_bandeira(Tabuleiro *campo, int linha, int coluna);
+
 #endif
