@@ -11,6 +11,8 @@ int main(){
     srand(time(NULL));
 
     int linha = 10, coluna = 10;
+    menu();
+    system("cls");
 
     Tabuleiro campo = criar_tabuleiro(linha, coluna);
     if (campo.celulas == NULL) {

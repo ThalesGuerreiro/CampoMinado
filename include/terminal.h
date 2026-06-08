@@ -5,4 +5,6 @@
 
 void imprime_campo(const Tabuleiro *campo);
 
+int menu();
+
 #endif
