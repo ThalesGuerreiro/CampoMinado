@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <stdbool.h>
 #include "terminal.h"
 #include "jogo.h"
 
@@ -76,10 +77,15 @@ int menu(){
     }
 }
 
-void imprime_campo(const Tabuleiro *campo){
+void imprime_campo(const Tabuleiro *campo, int x, int y){
     for(int i = 0; i < campo->linhas; i++){
         for(int j = 0; j < campo->colunas; j++){
             Celula atual = campo->celulas[indice(campo, i, j)];
+            bool selecionado = (i == x && j == y);
+
+            if(selecionado){
+                printf("\x1b[30m\x1b[47m");
+            }
 
             if(atual.tem_bandeira){
                 printf("⚑ ");
@@ -96,7 +102,48 @@ void imprime_campo(const Tabuleiro *campo){
             else if(atual.tem_bomba){
                 printf("X ");
             }
+
+            if(selecionado){
+                printf("\x1b[0m");
+            }
         }
         printf("\n");
     }
+    printf("* Enter - Seleciona / Espaço - Bandeira *");
+}
+
+int processa_comando(const Tabuleiro *campo, int *x, int *y){
+    int tecla = _getch();
+    //Cima, baixo, esquerda, direita
+    if(tecla == 224){
+        tecla = _getch();
+        switch(tecla){
+            case 72:
+                if(*x > 0){
+                    (*x)--;
+                }
+                break;
+                
+            case 80:
+                if(*x < campo->linhas - 1){
+                    (*x)++;
+                }
+                break;
+            
+            case 75:
+                if(*y > 0){
+                    (*y)--;
+                }
+                break;
+
+            case 77:
+                if(*y < campo->colunas - 1){
+                    (*y)++;
+                }
+                break;
+        }
+    }
+
+    return tecla;
+
 }
