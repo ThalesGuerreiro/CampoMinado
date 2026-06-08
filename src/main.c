@@ -10,8 +10,28 @@ int main(){
     SetConsoleOutputCP(CP_UTF8);
     srand(time(NULL));
 
-    int linha = 10, coluna = 10;
-    menu();
+        int linha, coluna;
+        int tamanho = menu();
+        switch(tamanho){
+            case 0:
+                linha = 15;
+                coluna = 15;
+                break;
+            
+            case 1:
+                linha = 25;
+                coluna = 40;
+                break;
+
+            case 2:
+                linha = 40;
+                coluna = 70;
+                break;
+            
+            case 3:
+                return 0;
+        }
+
     system("cls");
 
     Tabuleiro campo = criar_tabuleiro(linha, coluna);
@@ -31,12 +51,7 @@ int main(){
             revelar_celula(&campo, x, y);
         }
         else if(comando == 32){
-            if(campo.celulas[indice(&campo, x, y)].tem_bandeira == false){
-                campo.celulas[indice(&campo, x, y)].tem_bandeira = true;
-            }
-            else if(campo.celulas[indice(&campo, x, y)].tem_bandeira == true){
-                campo.celulas[indice(&campo, x, y)].tem_bandeira = false;
-            }
+            marca_bandeira(&campo, x, y);
         }
 
         system("cls");

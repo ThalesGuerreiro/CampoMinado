@@ -17,33 +17,33 @@ int menu(){
 
         switch(opcao){
             case 0:
-                printf("*      \x1b[33m>  FACIL\x1b[0m         *\n");
+                printf("*      \x1b[33m> PEQUENO\x1b[0m        *\n");
                 printf("*         MÉDIO         *\n");
-                printf("*        DIFÍCIL        *\n");
+                printf("*        GRANDE         *\n");
                 printf("*                       *\n");
                 printf("*         SAIR          *\n");
                 break;
         
             case 1:
-                printf("*         FACIL         *\n");
+                printf("*        PEQUENO        *\n");
                 printf("*      \x1b[33m>  MÉDIO\x1b[0m         *\n");
-                printf("*        DIFÍCIL        *\n");
+                printf("*        GRANDE         *\n");
                 printf("*                       *\n");
                 printf("*         SAIR          *\n");
                 break;
         
             case 2:
-                printf("*         FACIL         *\n");
+                printf("*        PEQUENO        *\n");
                 printf("*         MÉDIO         *\n");
-                printf("*      \x1b[33m> DIFÍCIL\x1b[0m        *\n");
+                printf("*      \x1b[33m> GRANDE\x1b[0m         *\n");
                 printf("*                       *\n");
                 printf("*         SAIR          *\n");
                 break;
 
             case 3:
-                printf("*         FACIL         *\n");
+                printf("*        PEQUENO        *\n");
                 printf("*         MÉDIO         *\n");
-                printf("*        DIFÍCIL        *\n");
+                printf("*        GRANDE         *\n");
                 printf("*                       *\n");
                 printf("*      \x1b[31m>  SAIR\x1b[0m          *\n");
                 break;
