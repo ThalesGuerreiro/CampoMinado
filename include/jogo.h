@@ -27,7 +27,7 @@ Tabuleiro criar_tabuleiro(int linhas, int colunas);
 
 int indice(const Tabuleiro *campo, int linha, int coluna);
 
-void coloca_bombas(Tabuleiro *campo);
+void coloca_bombas(Tabuleiro *campo, int x, int y);
 
 void calcula_bombas_vizinhas(Tabuleiro *campo);
 

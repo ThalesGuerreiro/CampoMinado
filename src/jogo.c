@@ -7,7 +7,7 @@ Tabuleiro criar_tabuleiro(int linhas, int colunas){
     Tabuleiro campo;
     campo.linhas = linhas;
     campo.colunas = colunas;
-    campo.total_bombas = linhas*colunas*0.2;
+    campo.total_bombas = linhas*colunas*0.1;
     campo.celulas = NULL;
     campo.n_reveladas = 0;
     campo.estado = JOGANDO;
@@ -32,12 +32,21 @@ int indice(const Tabuleiro *campo, int linha, int coluna){
     return linha * campo->colunas + coluna;
 }
 
-void coloca_bombas(Tabuleiro *campo){
-    int conta_bombas = 0, x = 0, y = 0;
+void coloca_bombas(Tabuleiro *campo, int x, int y){
+    int conta_bombas = 0, l, c, dx, dy, ind;
     while(conta_bombas<campo->total_bombas){
-        x = rand()%campo->linhas;
-        y = rand()%campo->colunas;
-        campo->celulas[indice(campo, x, y)].tem_bomba = true;
+        l = rand()%campo->linhas;
+        c = rand()%campo->colunas;
+        ind = indice(campo, l, c);
+        dx = abs(x - l);
+        dy = abs(y - c);
+        if(dx <= 1 && dy <= 1){
+            continue;
+        }
+        if(campo->celulas[ind].tem_bomba){
+            continue;
+        }
+        campo->celulas[ind].tem_bomba = true;
         conta_bombas++;
     }
 }

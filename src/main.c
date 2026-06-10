@@ -41,10 +41,23 @@ int main(){
             return 1;
         }
 
-        coloca_bombas(&campo);
-        calcula_bombas_vizinhas(&campo);
-
         int x = 0, y = 0, comando = 0;
+        //Garante que a primeira celula seja segura
+        while(comando != 13){
+            imprime_campo(&campo, x, y);
+
+            comando = processa_comando(&campo, &x, &y);
+            if(comando == 32){
+                marca_bandeira(&campo, x, y);
+            }
+
+            system("cls");
+        }
+
+        coloca_bombas(&campo, x, y);
+        calcula_bombas_vizinhas(&campo);
+        revelar_celula(&campo, x, y);
+
         while(campo.estado == JOGANDO){
             imprime_campo(&campo, x, y);
 
@@ -65,6 +78,8 @@ int main(){
         revela_campo(&campo);
         imprime_campo(&campo, -1, -1);
         _getch();
+        
+        free(campo.celulas);
 
         if(campo.estado == VITORIA){
             imprime_vitoria();
