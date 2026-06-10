@@ -8,13 +8,19 @@ typedef struct{
     int bombas_perto;
 }Celula;
 
+typedef enum {
+    JOGANDO,
+    VITORIA,
+    DERROTA
+} EstadoJogo;
+
 typedef struct{
     int linhas;
     int colunas;
     int total_bombas;
     Celula *celulas;
     int n_reveladas;
-    bool acabou;
+    EstadoJogo estado;
 }Tabuleiro;
 
 Tabuleiro criar_tabuleiro(int linhas, int colunas);

@@ -100,7 +100,7 @@ void imprime_campo(const Tabuleiro *campo, int x, int y){
                 printf("%i ", atual.bombas_perto);
             }
             else if(atual.tem_bomba){
-                printf("X ");
+                printf("\x1b[31mX \x1b[0m");
             }
 
             if(selecionado){
@@ -145,5 +145,48 @@ int processa_comando(const Tabuleiro *campo, int *x, int *y){
     }
 
     return tecla;
+}
 
+void revela_campo(const Tabuleiro *campo){
+    for(int i = 0; i < campo->linhas; i++){
+        for(int j = 0; j < campo->colunas; j++){
+            campo->celulas[indice(campo, i, j)].foi_revelada = true;
+        }
+    }
+}
+
+void imprime_derrota(){
+    system("cls");
+    printf("*************************\n");
+    printf("*                       *\n");
+    printf("*                       *\n");
+    printf("*      ╷ ╷╭─╮╭─╴╭─╴     *\n");
+    printf("*      │╭╯│ ││  ├╴      *\n");
+    printf("*      ╰╯ ╰─╯╰─╴╰─╴     *\n");
+    printf("*   ╭─╮╭─╴╭─╮╶┬╮╭─╴╷ ╷  *\n");
+    printf("*   ├─╯├╴ ├┬╯ ││├╴ │ │  *\n");
+    printf("*   ╵  ╰─╴╵╰╴╶┴╯╰─╴╰─╯  *\n");
+    printf("*                       *\n");
+    printf("*                       *\n");
+    printf("*************************\n");
+    _getch();
+    system("cls");
+}
+
+void imprime_vitoria(){
+    system("cls");
+    printf("*************************\n");
+    printf("*                       *\n");
+    printf("*                       *\n");
+    printf("*      ╷ ╷╭─╮╭─╴╭─╴     *\n");
+    printf("*      │╭╯│ ││  ├╴      *\n");
+    printf("*      ╰╯ ╰─╯╰─╴╰─╴     *\n");
+    printf("*  ╭─╴╭─╮╭╮╷╷ ╷╭─╮╷ ╷╷  *\n");
+    printf("*  │╶╮├─┤│╰┤├─┤│ ││ │╵  *\n");
+    printf("*  ╰─╯╵ ╵╵ ╵╵ ╵╰─╯╰─╯╵  *\n");
+    printf("*                       *\n");
+    printf("*                       *\n");
+    printf("*************************\n");
+    _getch();
+    system("cls");
 }

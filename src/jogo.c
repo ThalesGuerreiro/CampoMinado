@@ -10,7 +10,7 @@ Tabuleiro criar_tabuleiro(int linhas, int colunas){
     campo.total_bombas = linhas*colunas*0.2;
     campo.celulas = NULL;
     campo.n_reveladas = 0;
-    campo.acabou = false;
+    campo.estado = JOGANDO;
 
     campo.celulas = malloc(linhas*colunas * sizeof(Celula));
     if (campo.celulas == NULL) {
@@ -80,7 +80,7 @@ void revelar_celula(Tabuleiro *campo, int linha, int coluna){
         campo->n_reveladas++;
 
         if(campo->celulas[ind].tem_bomba == true){
-            campo->acabou = true;
+            campo->estado = DERROTA;
             return;
         }
 
